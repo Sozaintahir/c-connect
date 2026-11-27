@@ -1,0 +1,384 @@
+/* GENERAL */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #10111f;
+    color: white;
+}
+
+
+/* AUTH SCREEN */
+
+#authScreen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    background:
+        radial-gradient(circle at 15% 20%, #30245b 0, transparent 35%),
+        radial-gradient(circle at 85% 80%, #25204b 0, transparent 35%),
+        #10111f;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    background: rgba(31, 32, 53, 0.88);
+    border: 1px solid #393752;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.brand-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #805ad5;
+    border-radius: 12px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.brand h1 span {
+    color: #a78bfa;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #aaa9bd;
+    font-size: 14px;
+    margin-bottom: 35px;
+}
+
+#loginForm h2,
+#signupForm h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.form-description {
+    color: #aaa9bd;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+#loginForm label,
+#signupForm label {
+    display: block;
+    color: #d5d3e2;
+    font-size: 13px;
+    margin: 18px 0 8px;
+}
+
+#loginForm input,
+#signupForm input {
+    width: 100%;
+    padding: 14px;
+    background: #17182a;
+    color: white;
+    border: 1px solid #414057;
+    border-radius: 9px;
+    outline: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+#loginForm input:focus,
+#signupForm input:focus {
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.12);
+}
+
+input::placeholder {
+    color: #77768c;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 25px;
+    background: linear-gradient(135deg, #9065e8, #7046c5);
+    color: white;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.primary-btn:hover {
+    background: linear-gradient(135deg, #a47df0, #805ad5);
+    transform: translateY(-1px);
+}
+
+.switch-text {
+    text-align: center;
+    color: #aaa9bd;
+    font-size: 13px;
+    margin-top: 25px;
+}
+
+.text-btn {
+    background: transparent;
+    color: #b69aff;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 3px;
+}
+
+.text-btn:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+
+/* CHAT SCREEN */
+
+#chatScreen {
+    display: flex;
+    height: 100vh;
+}
+
+
+/* ROOMS */
+
+#rooms {
+    width: 220px;
+    background-color: #1c1c30;
+    padding: 20px;
+    border-right: 1px solid #34344b;
+}
+
+#rooms h2 {
+    color: #a78bfa;
+    margin-bottom: 35px;
+}
+
+.roomBtn {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 13px;
+    text-align: left;
+    background-color: transparent;
+    color: #ccc;
+    border-radius: 8px;
+}
+
+.roomBtn:hover {
+    background-color: #393951;
+    color: white;
+}
+
+#logoutBtn {
+    margin-top: 30px;
+    width: 100%;
+    background: #3a2636;
+    color: #ffb5c5;
+    border-radius: 8px;
+}
+
+
+/* CHAT AREA */
+
+#chat {
+    flex: 1;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+#roomTitle {
+    border-bottom: 1px solid #393951;
+    padding-bottom: 15px;
+}
+
+
+/* MESSAGES */
+
+#list {
+    flex: 1;
+    overflow-y: auto;
+    list-style: none;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#list li {
+    background-color: #393951;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    width: fit-content;
+}
+
+
+/* MESSAGE INPUT */
+
+#messageBox {
+    display: flex;
+    gap: 10px;
+}
+
+#messageInput {
+    flex: 1;
+    background-color: #242438;
+    color: white;
+    border: 1px solid #414057;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+#sendBtn {
+    background: #805ad5;
+    color: white;
+    border-radius: 8px;
+}
+
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 600px) {
+
+    .auth-card {
+        padding: 28px 22px;
+    }
+
+    #chatScreen {
+        flex-direction: column;
+    }
+
+    #rooms {
+        width: 100%;
+        padding: 12px;
+        border-right: none;
+        border-bottom: 1px solid #34344b;
+    }
+
+    #rooms h2 {
+        margin: 5px 0 15px;
+    }
+
+    .roomBtn {
+        display: inline-block;
+        width: auto;
+        margin: 3px;
+    }
+
+    #logoutBtn {
+        width: auto;
+        margin: 3px;
+    }
+
+    #chat {
+        min-height: 0;
+        flex: 1;
+        padding: 15px;
+    }
+}
+
+/* Keep login and signup centered after logout */
+
+#authScreen {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#createRoomForm {
+    display: none;
+    padding: 20px;
+    background: #1e1e2f;
+    border-radius: 10px;
+    width: 250px;
+}
+
+#createRoomForm h3 {
+    margin-bottom: 15px;
+}
+
+#createRoomForm label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+#createRoomForm input,
+#createRoomForm select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+#createRoomForm button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+#leaveRoomBtn {
+    width: fit-content;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: #a321e4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+#leaveRoomBtn:hover {
+    background-color: #c0392b;
+}
+#deleteRoomBtn {
+    display: none;
+    width: fit-content;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: #a321e4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+#deleteRoomBtn:hover {
+    background-color: #c0392b;
+}

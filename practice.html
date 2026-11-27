@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Chat App</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- AUTH SCREEN -->
+    <div id="authScreen">
+        <div class="auth-card">
+            <div class="brand">
+                <div class="brand-icon">C</div>
+                <h1>Connect<span>.</span></h1>
+            </div>
+            <p class="auth-subtitle">Your conversations, all in one place.</p>
+            <!-- LOGIN FORM: SHOWS FIRST -->
+            <div id="loginForm">
+                <h2>Welcome back</h2>
+                <p class="form-description">
+                    Login to continue chatting with your people.
+                </p>
+                <label for="loginEmail">Email address</label>
+                <input type="email" id="loginEmail" placeholder="you@example.com" />
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" />
+                <button id="loginBtn" class="primary-btn">Login</button>
+                <p class="switch-text">
+                    Don't have an account?
+                    <button id="showSignup" class="text-btn">Sign up</button>
+                </p>
+            </div>
+            <!-- SIGN UP FORM: HIDDEN INITIALLY -->
+            <div id="signupForm" style="display: none">
+                <h2>Create your account</h2>
+                <p class="form-description">Join the conversation. It starts here.</p>
+                <label for="signupName">Your name</label>
+                <input type="text" id="signupName" placeholder="Enter your name" />
+                <label for="signupEmail">Email address</label>
+                <input type="email" id="signupEmail" placeholder="you@example.com" />
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" placeholder="Create a password" />
+                <button id="signupBtn" class="primary-btn">Create account</button>
+                <p class="switch-text">
+                    Already have an account?
+                    <button id="showLogin" class="text-btn">Login</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- CHAT SCREEN -->
+    <div id="chatScreen" style="display: none">
+        <!-- ROOMS SECTION -->
+        <div id="rooms">
+            <h2>My Chat</h2>
+            <button class="roomBtn" data-room="general">General</button>
+            <button class="roomBtn" data-room="friends">Friends</button>
+            <button class="roomBtn" data-room="gaming">Gaming</button>
+            <h3>Public Rooms</h3>
+            <div id="publicRooms"></div>
+            <h3>Private Rooms</h3>
+            <div id="privateRooms"></div>
+            <button id="createRoomBtn">+ Create New Room</button>
+            <button id="logoutBtn">Logout</button>
+        </div>
+        <div id="createRoomForm" style="display: none">
+            <h3>Create New Room</h3>
+            <label for="roomNameInput">Room Name</label>
+            <input type="text" id="roomNameInput" placeholder="Enter room name" />
+            <label for="roomPrivacy">Room Privacy</label>
+            <select id="roomPrivacy">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select>
+            <div id="roomPasswordBox" style="display: none">
+                <label for="roomPasswordInput">Room Password</label>
+                <input type="password" id="roomPasswordInput" placeholder="Create room password" />
+            </div>
+            <button id="saveRoomBtn">Create Room</button>
+            <button id="cancelRoomBtn">Cancel</button>
+        </div>
+        <!-- CHAT SECTION -->
+        <div id="chat">
+            <h2 id="roomTitle">General</h2>
+            <button id="leaveRoomBtn" style="display: none;">
+                Leave Room
+            </button>
+            <button id="deleteRoomBtn" style="display: none;">
+                Delete Room
+            </button>
+            <ul id="list"></ul>
+            <div id="messageBox">
+                <input type="text" id="messageInput" placeholder="Type a message..." />
+                <button id="sendBtn">Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+</head>
+<body>
+    <div id="nameScreen">
+        <h1>Welcome!</h1>
+        <input type="text" placeholder="Enter your name" id="nameInput">
+        <button id="enterBtn">Enter</button>
+    </div>
+
+    <div id="chatScreen" style="display: none;">
+        <h1>Chat App!</h1>
+        <input id="messageInput" type="text" placeholder="Enter Your Text">
+        <button id="sendBtn">Send</button>
+        <ul id="list"></ul>
+    </div>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="index.js"></script>
+</body>
+</html>
