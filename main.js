@@ -5,6 +5,7 @@ const database = supabase.createClient(
 const authScreen = document.querySelector("#authScreen");
 const signupForm = document.querySelector("#signupForm");
 const loginForm = document.querySelector("#loginForm");
+const chat = document.querySelector("#chat");
 const signupName = document.querySelector("#signupName");
 const signupEmail = document.querySelector("#signupEmail");
 const signupPassword = document.querySelector("#signupPassword");
@@ -36,7 +37,7 @@ const roomsList = document.querySelector("#rooms");
 let username = "";
 let userId = "";
 let channel = null;
-let currentRoom = "general";
+let currentRoom = "room1";
 let channelReady = false;
 showLogin.addEventListener("click", function () {
   signupForm.style.display = "none";
@@ -120,7 +121,7 @@ loginBtn.addEventListener("click", function () {
 logoutBtn.addEventListener("click", function () {
   database
     .from("user_session")
-    .update({ current_room: "general" })
+    .update({ current_room: "room1" })
     .eq("user_id", userId)
     .then(function (response) {
       if (response.error) {
@@ -154,10 +155,18 @@ logoutBtn.addEventListener("click", function () {
         });
     });
 });
+function showRoomsPage() {
+  chat.style.display = "none";
+  roomsList.style.display = "block";
+  createRoomForm.style.display = "none";
+  loadRooms();
+}
 function joinRoom(roomName) {
   currentRoom = roomName;
+  roomsList.style.display = "none";
+  chat.style.display = "flex";
   deleteRoomBtn.style.display = "none";
-  if (!["general", "friends", "gaming"].includes(roomName)) {
+  if (!["room1", "room2", "room3"].includes(roomName)) {
     database
       .from("rooms")
       .select("created_by")
@@ -176,11 +185,7 @@ function joinRoom(roomName) {
         }
       });
   }
-  if (roomName === "general") {
-    leaveRoomBtn.style.display = "none";
-  } else {
-    leaveRoomBtn.style.display = "inline-block";
-  }
+  leaveRoomBtn.style.display = "inline-block";
   database
     .from("user_session")
     .select("*")
@@ -220,7 +225,15 @@ function joinRoom(roomName) {
           });
       }
     });
-  roomTitle.innerText = roomName;
+  if (roomName === "room1") {
+    roomTitle.innerText = "💬 Room 1";
+  } else if (roomName === "room2") {
+    roomTitle.innerText = "💬 Room 2";
+  } else if (roomName === "room3") {
+    roomTitle.innerText = "💬 Room 3";
+  } else {
+    roomTitle.innerText = roomName;
+  }
   list.innerHTML = "";
   channelReady = false;
   if (channel !== null) {
@@ -235,7 +248,7 @@ function joinRoom(roomName) {
 function openSavedRoom() {
   database
     .from("user_session")
-    .select("*")
+    .select("current_room")
     .eq("user_id", userId)
     .then(function (response) {
       if (response.error) {
@@ -243,14 +256,11 @@ function openSavedRoom() {
         return;
       }
       if (response.data.length === 0) {
-        console.log("No saved room found. Opening General.");
-        joinRoom("general");
+        joinRoom("room1");
       } else {
         let savedRoom = response.data[0].current_room;
-        console.log("Saved room found:", savedRoom);
         joinRoom(savedRoom);
       }
-      loadRooms();
     });
 }
 function createChannel(roomName) {
@@ -275,12 +285,10 @@ function createChannel(roomName) {
 }
 const roomButtons = document.querySelectorAll(".roomBtn");
 roomButtons.forEach(function (button) {
-  button.addEventListener("click", function () {
-    let roomName = button.dataset.room;
-    if (roomName !== currentRoom) {
-      joinRoom(roomName);
-    }
-  });
+    button.addEventListener("click", function () {
+        let roomName = button.dataset.room;
+        joinRoom(roomName);
+    });
 });
 sendBtn.addEventListener("click", function () {
   let message = messageInput.value.trim();
@@ -413,7 +421,7 @@ database.auth.getSession().then(function (response) {
   }
 });
 createRoomBtn.addEventListener("click", function () {
-  createRoomForm.style.display = "block";
+  createRoomForm.style.display = "flex";
 });
 roomPrivacy.addEventListener("change", function () {
   if (roomPrivacy.value === "private") {
@@ -513,11 +521,11 @@ function loadRooms() {
     });
 }
 leaveRoomBtn.addEventListener("click", function () {
-  joinRoom("general");
+  showRoomsPage();
 });
 deleteRoomBtn.addEventListener("click", function () {
   let roomToDelete = currentRoom;
-  if (["general", "friends", "gaming"].includes(roomToDelete)) {
+  if (["room1", "room2", "room3"].includes(roomToDelete)) {
     alert("Default rooms cannot be deleted!");
     return;
   }
@@ -574,7 +582,7 @@ deleteRoomBtn.addEventListener("click", function () {
               }
               alert("Room deleted successfully!");
               deleteRoomBtn.style.display = "none";
-              joinRoom("general");
+              showRoomsPage();
               loadRooms();
             });
         });

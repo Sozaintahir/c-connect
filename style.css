@@ -267,43 +267,207 @@ button {
 
 /* MOBILE RESPONSIVENESS */
 
+/* MOBILE RESPONSIVENESS */
+
 @media (max-width: 600px) {
 
-    .auth-card {
-        padding: 28px 22px;
-    }
+    /* CHAT SCREEN */
 
     #chatScreen {
+        height: 100vh;
+        height: 100dvh;
+        width: 100%;
+        min-height: 0;
         flex-direction: column;
+        overflow: hidden;
     }
+
+
+    /* ROOMS SIDEBAR */
 
     #rooms {
         width: 100%;
-        padding: 12px;
+        flex: 0 0 auto;
+        max-height: 38%;
+        overflow-y: auto;
+        padding: 15px;
         border-right: none;
-        border-bottom: 1px solid #34344b;
+        border-bottom: 1px solid #393951;
+        background: #1c1c30;
     }
 
     #rooms h2 {
-        margin: 5px 0 15px;
+        font-size: 21px;
+        margin: 0 0 15px;
     }
 
-    .roomBtn {
-        display: inline-block;
+    #rooms h3 {
+        font-size: 13px;
+        color: #a78bfa;
+        margin: 13px 0 8px;
+        letter-spacing: 0.5px;
+    }
+
+
+    /* DEFAULT, PUBLIC AND PRIVATE ROOM BUTTONS */
+
+    #rooms .roomBtn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
         width: auto;
+        max-width: 100%;
+        min-height: 38px;
+        padding: 9px 13px;
         margin: 3px;
+        font-size: 13px;
+        background: #282840;
+        border: 1px solid #393951;
+        border-radius: 8px;
+        color: #d5d3e2;
+        white-space: nowrap;
+    }
+
+    #rooms .roomBtn:hover {
+        background: #393951;
+        color: white;
+    }
+
+
+    /* PUBLIC AND PRIVATE ROOM GROUPS */
+
+    #publicRooms,
+    #privateRooms {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        width: 100%;
+    }
+
+    #publicRooms .roomBtn,
+    #privateRooms .roomBtn {
+        margin: 0;
+    }
+
+
+    /* CREATE ROOM AND LOGOUT BUTTONS */
+
+    #createRoomBtn {
+        display: inline-block;
+        padding: 10px 13px;
+        margin: 10px 3px 3px;
+        border-radius: 8px;
+        background: #805ad5;
+        color: white;
+        font-size: 13px;
     }
 
     #logoutBtn {
+        display: inline-block;
         width: auto;
-        margin: 3px;
+        padding: 10px 15px;
+        margin: 10px 3px 3px;
+        border-radius: 8px;
+        font-size: 13px;
     }
 
-    #chat {
-        min-height: 0;
-        flex: 1;
-        padding: 15px;
+
+    /* CREATE ROOM FORM */
+
+    #createRoomForm {
+        position: fixed;
+        z-index: 100;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% - 32px);
+        max-width: 360px;
+        max-height: 85dvh;
+        overflow-y: auto;
+        padding: 22px;
+        background: #1e1e2f;
+        border: 1px solid #393951;
+        border-radius: 14px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
     }
+
+    #createRoomForm input,
+    #createRoomForm select {
+        width: 100%;
+        font-size: 16px;
+    }
+
+
+    /* CHAT SECTION */
+
+    #chat {
+        width: 100%;
+        flex: 1;
+        min-height: 0;
+        padding: 12px;
+        overflow: hidden;
+    }
+
+    #roomTitle {
+        font-size: 19px;
+        margin: 4px 0 12px;
+        padding-bottom: 12px;
+    }
+
+
+    /* LEAVE AND DELETE BUTTONS */
+
+    #leaveRoomBtn,
+    #deleteRoomBtn {
+        display: inline-block;
+        width: fit-content;
+        padding: 7px 11px;
+        margin: 2px 3px 8px;
+        font-size: 12px;
+    }
+
+
+    /* MESSAGE AREA */
+
+    #list {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 8px 4px;
+        margin: 0;
+        overscroll-behavior: contain;
+    }
+
+    #list li {
+        max-width: 85%;
+        font-size: 14px;
+        overflow-wrap: anywhere;
+    }
+
+
+    /* MESSAGE INPUT */
+
+    #messageBox {
+        display: flex;
+        flex: 0 0 auto;
+        width: 100%;
+        gap: 8px;
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+    }
+
+    #messageInput {
+        flex: 1;
+        min-width: 0;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    #sendBtn {
+        flex: 0 0 auto;
+        padding: 0 16px;
+        font-size: 14px;
+    }
+
 }
 
 /* Keep login and signup centered after logout */
@@ -381,4 +545,237 @@ button {
 
 #deleteRoomBtn:hover {
     background-color: #c0392b;
+}
+/* NEW ROOMS PAGE */
+
+#chatScreen {
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+}
+
+#rooms {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 30px;
+    overflow-y: auto;
+    border: none;
+}
+
+.rooms-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.rooms-header h2 {
+    color: #a78bfa;
+    margin: 0;
+}
+
+#rooms h3 {
+    color: #d5d3e2;
+    margin: 28px 0 14px;
+}
+
+.defaultRooms,
+#publicRooms,
+#privateRooms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.defaultRooms .roomBtn,
+#publicRooms .roomBtn,
+#privateRooms .roomBtn {
+    width: auto;
+    min-width: 120px;
+    padding: 15px 20px;
+    margin: 0;
+    background: #242438;
+    border: 1px solid #414057;
+    text-align: center;
+}
+
+.defaultRooms .roomBtn:hover,
+#publicRooms .roomBtn:hover,
+#privateRooms .roomBtn:hover {
+    background: #393951;
+    border-color: #a78bfa;
+}
+
+#createRoomBtn {
+    margin-top: 30px;
+    padding: 13px 18px;
+    background: #805ad5;
+    color: white;
+    border-radius: 9px;
+    font-weight: bold;
+}
+
+#logoutBtn {
+    padding: 10px 16px;
+}
+
+/* CHAT PAGE */
+
+#chat {
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#leaveRoomBtn,
+#deleteRoomBtn {
+    padding: 8px 13px;
+    border-radius: 7px;
+    color: white;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+    #chatScreen {
+        height: 100vh;
+        height: 100dvh;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    #rooms {
+        padding: 20px 16px;
+    }
+
+    .rooms-header {
+        margin-bottom: 25px;
+    }
+
+    #rooms h3 {
+        margin-top: 25px;
+        font-size: 19px;
+    }
+
+    .defaultRooms,
+    #publicRooms,
+    #privateRooms {
+        gap: 9px;
+    }
+
+    .defaultRooms .roomBtn,
+    #publicRooms .roomBtn,
+    #privateRooms .roomBtn {
+        flex: 1 1 calc(50% - 9px);
+        min-width: 0;
+        padding: 13px 8px;
+        text-align: center;
+    }
+
+    #createRoomBtn {
+        width: 100%;
+    }
+
+    #createRoomForm {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    #chat {
+        height: 100%;
+        min-height: 0;
+        padding: 15px;
+    }
+
+    .chat-header {
+        gap: 10px;
+    }
+
+    #roomTitle {
+        font-size: 20px;
+    }
+}
+#logoutBtn {
+    width: auto;
+    padding: 10px 18px;
+    margin: 0;
+    display: inline-block;
+    flex: 0 0 auto;
+}
+
+/* Create Room Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 420px;
+    padding: 28px;
+    background: #1e1e30;
+    border: 1px solid #414057;
+    border-radius: 16px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #a78bfa;
+}
+
+.modal-content label {
+    display: block;
+    margin: 14px 0 8px;
+    color: #d5d3e2;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 8px;
+    background: #29293d;
+    color: white;
+    border: 1px solid #414057;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.modal-buttons button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+#saveRoomBtn {
+    background: #805ad5;
+    color: white;
+}
+
+#cancelRoomBtn {
+    background: #343449;
+    color: white;
 }
